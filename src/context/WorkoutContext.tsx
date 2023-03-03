@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, SetStateAction } from 'react'
-import * as services from '../services/workout'
+import * as services from '../services/WorkoutServices'
 
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -17,7 +17,6 @@ export interface Exercise {
 export interface WorkoutContextType {
     exercises: Exercise[],
     error: string,
-    isLoading: boolean,
     handleExercises: () => void
     submitSetCompletion: (id: number, weight: number, reps: number) => void,
 
@@ -26,7 +25,6 @@ export interface WorkoutContextType {
 const initialWorkContext: WorkoutContextType = {
     exercises: [],
     error: "",
-    isLoading: false,
     handleExercises: () => {} ,
     submitSetCompletion: () => {},
 }
@@ -89,7 +87,6 @@ const WorkoutProvider: React.FC<ParentCompProps> = ({ children }: ParentCompProp
                 exercises: exercises,
                 submitSetCompletion: SubmitSetCompletion,
                 handleExercises: HandleExercices,
-                isLoading: false,
                 error: ""
             }}>
             {children}

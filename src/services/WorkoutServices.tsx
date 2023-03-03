@@ -1,4 +1,4 @@
-import { Exercise } from "../context/workContext";
+import { Exercise } from "../context/WorkoutContext";
 
 export const ParseExercices = async (): Promise<Exercise[]>  => {
     return [
@@ -6,7 +6,6 @@ export const ParseExercices = async (): Promise<Exercise[]>  => {
             id: 0,        
             name: "наклоны на одной ноге",
             done: false,
-            completed_sets: 0,
             total_sets: 3,
             weight: 0,
             reps: 0,
@@ -18,7 +17,6 @@ export const ParseExercices = async (): Promise<Exercise[]>  => {
             id: 1,        
             name: "наклоны на двцух ногах",
             done: false,
-            completed_sets: 0,
             total_sets: 3,
             weight: 0,
             reps: 0,
@@ -30,7 +28,6 @@ export const ParseExercices = async (): Promise<Exercise[]>  => {
             id: 2,        
             name: "наклоны на трех ногах",
             done: false,
-            completed_sets: 0,
             total_sets: 3,
             weight: 0,
             reps: 0,
