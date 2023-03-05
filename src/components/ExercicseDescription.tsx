@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import {WorkoutContext, WorkoutContextType} from '../context/WorkoutContext'
 import {
   Container, 
   TopText,
@@ -8,10 +9,13 @@ import {
 
 
 export const ExercicseDescription = () => {
+    const {exercises, currId} = useContext(WorkoutContext) as WorkoutContextType
+    const exercise = exercises[currId]
+    
     return (
         <Container>
-            <TopText>ТРИСЕТ</TopText>
-            <LargeText>1/3</LargeText>
+            <TopText>{exercise?.set_name}</TopText>
+            <LargeText>{currId+1}/{exercise?.total_sets}</LargeText>
             <SmallText>подход</SmallText>
         </Container> 
     )

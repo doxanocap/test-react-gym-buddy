@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export interface Exercise {
     id: number,
+    set_name: string,
     name: string,
     done: boolean,
     total_sets: number,
@@ -15,6 +16,8 @@ export interface Exercise {
 }
 
 export interface WorkoutContextType {
+    currId: number,
+    setCurrId: React.Dispatch<React.SetStateAction<number>>,
     exercises: Exercise[],
     error: string,
     handleExercises: () => void
@@ -23,6 +26,8 @@ export interface WorkoutContextType {
 }
 
 const initialWorkContext: WorkoutContextType = {
+    currId: 0,
+    setCurrId: () => {}, 
     exercises: [],
     error: "",
     handleExercises: () => {} ,
@@ -44,6 +49,7 @@ const WorkoutProvider: React.FC<ParentCompProps> = ({ children }: ParentCompProp
     // New exercice cannot be appended, until 
     // Exercices[len - 1] is not completed => { Exercise.done === true }
     const [exercises, setExercises] = useState<Exercise[]>([])
+    const [currId, setCurrId] = useState<number>(0)
     const [error, setError] = useState<string>()
     
 
@@ -68,6 +74,8 @@ const WorkoutProvider: React.FC<ParentCompProps> = ({ children }: ParentCompProp
                 }
             })
 
+            setCurrId(currId+1)            
+            
             return copy
         })        
         
@@ -84,6 +92,8 @@ const WorkoutProvider: React.FC<ParentCompProps> = ({ children }: ParentCompProp
     return (
         <WorkoutContext.Provider
             value={{
+                currId: currId,
+                setCurrId: setCurrId,
                 exercises: exercises,
                 submitSetCompletion: SubmitSetCompletion,
                 handleExercises: HandleExercices,

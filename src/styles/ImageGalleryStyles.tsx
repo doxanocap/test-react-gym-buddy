@@ -1,6 +1,5 @@
 import styled from "styled-components/native";
 
-
 export const Container = styled.View`
   align-items: center;
   justify-content: center;
@@ -17,12 +16,13 @@ export const Text = styled.Text`
 export const ScrollView = styled.ScrollView`
   margin-top: 5px;
   margin-bottom: 30px;
-  padding-left: 20%;
 `
 
 export const Gallery = styled.View`
   background-color: green; 
+  border-radius: 10px;
   width: 100px;
-  height: 250px;
-  margin: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+  height: 175px;
 `

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useContext, useState} from 'react'
+import {WorkoutContext, WorkoutContextType} from '../context/WorkoutContext'
 import {
     Container,
     Gallery,
@@ -7,18 +8,38 @@ import {
 } from '../styles/ImageGalleryStyles'
 
 const ImageGallery = () => {
+  const [focusedNumber, setFocusedNumber] = useState<number>(0)
+
+  const arr = new Array(4).fill(0)
+  
+  type renderInput = {
+    number: number,
+  }
+
+  const {exercises, currId} = useContext(WorkoutContext) as WorkoutContextType
+  const exercise = exercises[currId]
+
   return (
     <Container>
-        <Text>
-            НАКЛОНЫ НА ОДНОЙ НОГЕ
-        </Text>
+      <Text>
+        {exercise?.name}
+      </Text>
+ 
+      <ScrollView 
+        horizontal={true}
+        decelerationRate={0.2}
+        showsHorizontalScrollIndicator={false}
+        scrollEventThrottle={1}
+        onScroll={(event) => {
+          const x = event.nativeEvent.contentOffset.x
+          setFocusedNumber(Math.floor(x/122))
+        }}> 
         
-        <ScrollView horizontal={true}> 
-            <Gallery/>
-            <Gallery/>
-            <Gallery/>
-            <Gallery/>
-        </ScrollView>
+        {arr.map((_, key) => 
+          <Gallery key={key}/>
+        )}
+
+      </ScrollView>
     </Container>
   )
 }
